@@ -2,8 +2,7 @@
   <div class="list-todos">  <!--菜单容器-->
     <a class="list-todo list activeListClass" v-for="item in items"> <!-- v-for 列表渲染-->
       <span class="icon-lock" v-if="item.locked"></span> <!-- v-if 条件渲染-->
-      <span class="count-list" v-if="item.count >
-     0">{{item.count}}</span>
+      <span class="count-list" v-if="item.count > 0">{{item.count}}</span>
       {{item.title}}   <!-- 数据绑定，看模板语法-->
     </a>
   </div>
@@ -12,8 +11,8 @@
   export default {
     data() { //data函数
       return {
-        items: [{ title: '星期一', count: 1, locked: true }, //菜单的模拟数据
-          { title: '星期二', count: 2, locked: true }, {
+        items: [{title: '星期一', count: 1, locked: true}, //菜单的模拟数据
+          {title: '星期二', count: 2, locked: true}, {
             title: '星期三', count: 3, locked: false
           }]
       };
