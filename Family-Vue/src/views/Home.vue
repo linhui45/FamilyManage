@@ -9,7 +9,16 @@
           <i class="fa fa-align-justify"></i>
         </div>
       </el-col>
-      <el-col :span="4"></el-col>
+      <el-col :span="4" class="userinfo">
+        <el-dropdown trigger="hover">
+          <span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar"/>{{sysUserName}}</span>
+          <el-dropdown-menu class="dropdown">
+            <el-dropdown-item>我的消息</el-dropdown-item>
+            <el-dropdown-item>设置</el-dropdown-item>
+            <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </el-col>
     </el-col>
     <el-col :span="24" class="main">
       感觉是不是得输出点什么
@@ -22,13 +31,36 @@
     data() {
       return {
         sysName: '特殊事件!',
-        collapsed: false
+        collapsed: false,
+        sysUserName: '',
+        sysUserAvatar: '',
       }
     },
-    methods:{
+    methods: {
+      //退出登录
+      logout: function () {
+        var _this = this;
+        this.$confirm('确认退出吗?', '提示', {
+          //type: 'warning'
+        }).then(() => {
+          sessionStorage.removeItem('user');
+          _this.$router.push('/login');
+        }).catch(() => {
+
+        });
+      },
       //折叠导航栏
-      collapse:function(){
-        this.collapsed=!this.collapsed;
+      collapse: function () {
+        this.collapsed = !this.collapsed;
+      }
+
+    },
+    mounted() {
+      var user = sessionStorage.getItem('user');
+      if (user) {
+        user = JSON.parse(user);
+        this.sysUserName = user.name || '';
+        this.sysUserAvatar = user.avatar || '';
       }
 
     }
@@ -38,6 +70,7 @@
 <style scoped lang="scss">
 
   @import '~scss_vars';
+
   .container {
     position: absolute;
     top: 0px;
