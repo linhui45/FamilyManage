@@ -4,7 +4,11 @@
       <el-col :span="10" class="logo" :class="collapsed?'logo-collapse-width':'logo-width'">
         {{collapsed?'':sysName}}
       </el-col>
-      <el-col :span="10"></el-col>
+      <el-col :span="10">
+        <div class="tools" @click.prevent="collapse">
+          <i class="fa fa-align-justify"></i>
+        </div>
+      </el-col>
       <el-col :span="4"></el-col>
     </el-col>
     <el-col :span="24" class="main">
@@ -20,6 +24,13 @@
         sysName: '特殊事件!',
         collapsed: false
       }
+    },
+    methods:{
+      //折叠导航栏
+      collapse:function(){
+        this.collapsed=!this.collapsed;
+      }
+
     }
   }
 </script>
