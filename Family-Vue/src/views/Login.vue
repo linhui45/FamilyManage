@@ -1,75 +1,98 @@
 <template>
-  <el-container>
-    <el-aside></el-aside>
-    <el-container>
-      <el-header></el-header>
-      <el-main>
-        <el-menu mode="horizontal" class="el-menu-demo" :default-active="activeIndex" background-color="#545c64"
-                 text-color="#fff" active-text-color="#ffd04b">
-          <el-menu-item index="1">处理中心</el-menu-item>
-          <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-menu-item-group>
-              <el-submenu index="2-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="2-4-1">选项41</el-menu-item>
-                <el-menu-item index="2-4-2">选项42</el-menu-item>
-                <el-menu-item index="2-4-3">选项43</el-menu-item>
-              </el-submenu>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-menu-item index="3" disabled>消息中心</el-menu-item>
-          <el-menu-item index="4">订单管理</el-menu-item>
-        </el-menu>
-      </el-main>
-      <el-footer></el-footer>
-    </el-container>
-    <el-aside></el-aside>
-  </el-container>
+  <!--背景图-->
+  <!--login框，表单+tab标签页的组合-->
+  <div class="loginFrame">
+    <div class="note" :style="note"></div>
+    <el-form ref="AccountForm" :model="account" :rules="rules" label-position="left" label-width="0px"
+             class="demo-ruleForm login-container">
+        <!--tab标签-->
+        <el-tabs v-model="activeName" @tab-click="handleClick" class="users">
+          <el-tab-pane label="学生" name="students"></el-tab-pane>
+          <el-tab-pane label="教师" name="teacher"></el-tab-pane>
+          <el-tab-pane label="教务老师" name="eduTeacher"></el-tab-pane>
+        </el-tabs>
+
+      <el-form-item prop="username">
+        <el-input type="text" v-model="account.username" auto-complete="off" placeholder="请输入您的账号"></el-input>
+      </el-form-item>
+      <el-form-item prop="password">
+        <el-input type="password" v-model="account.password" auto-complete="off" placeholder="请输入密码"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+        <a class="forgetpwd">忘记密码</a>
+      </el-form-item>
+      <el-form-item style="width:100%;">
+        <el-button type="primary" style="width:100%;">登录</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script>
   export default {
-    name: "Login.vue",
-    data(){
+    name: 'Login',
+    data() {
       return {
-        activeIndex:'1'
+        logining: false,
+        account: {
+          username: '',
+          password: '',
+        },
+        note: {
+          position: "absolute",
+          top: "0px",
+          left: "0px",
+          width: "100%",
+          height: "100%",
+          backgroundImage: "url(" + require("../../dist/static/img/loginBg.jpg") + ")",
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+        },
+        activeName: "students",
+        rules: {
+          username: [
+            {required: true, message: '请输入账号', trigger: 'blur'},
+            //{ validator: validaePass }
+          ],
+          password: [
+            {required: true, message: '请输入密码', trigger: 'blur'},
+            //{ validator: validaePass2 }
+          ]
+        },
+        checked: true
+      };
+    },
+    methods: {
+      handleClick() {
+        console.log("就是这么操作的!");
       }
     }
-  }
-</script>
+  }</script>
 
-<style scoped>
-  .el-header, .el-footer {
-    text-align: center;
-    line-height: 60px;
-  }
-
-  .el-aside {
-    width:400px;
-    text-align: center;
-    line-height: 200px;
+<style>
+  body {
+    background-image: url("../../dist/static/img/loginBg.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
   }
 
-  .el-main {
-    color: #333;
-    text-align: center;
-    line-height: 160px;
+  .login-container {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-clip: padding-box;
+    margin: 180px auto;
+    width: 350px;
+    padding: 35px 35px 15px 35px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    /*box-shadow: 0 0 25px #cac6c6;*/
+
   }
 
-  body > .el-container {
-    margin-bottom: 40px;
-  }
+  .forgetpwd{
 
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
   }
 </style>
