@@ -13,14 +13,14 @@
         </el-tabs>
 
       <el-form-item prop="username">
-        <el-input type="text" v-model="account.username" auto-complete="off" placeholder="请输入您的账号"></el-input>
+        <el-input type="text" v-model="account.username" auto-complete="on" placeholder="请输入您的账号"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password" v-model="account.password" auto-complete="off" placeholder="请输入密码"></el-input>
       </el-form-item>
       <el-form-item>
         <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
-        <a class="forgetpwd">忘记密码</a>
+        <a class="forgetpwd" href="Home.vue">忘记密码</a>
       </el-form-item>
       <el-form-item style="width:100%;">
         <el-button type="primary" style="width:100%;">登录</el-button>
@@ -93,6 +93,6 @@
   }
 
   .forgetpwd{
-
+    float: right;
   }
 </style>
