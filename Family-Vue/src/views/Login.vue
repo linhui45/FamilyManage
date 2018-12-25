@@ -5,12 +5,14 @@
     <div class="note" :style="note"></div>
     <el-form ref="AccountForm" :model="account" :rules="rules" label-position="left" label-width="0px"
              class="demo-ruleForm login-container">
+      <el-form-item>
         <!--tab标签-->
         <el-tabs v-model="activeName" @tab-click="handleClick" class="users">
           <el-tab-pane label="学生" name="students"></el-tab-pane>
           <el-tab-pane label="教师" name="teacher"></el-tab-pane>
           <el-tab-pane label="教务老师" name="eduTeacher"></el-tab-pane>
         </el-tabs>
+      </el-form-item>
 
       <el-form-item prop="username">
         <el-input type="text" v-model="account.username" auto-complete="on" placeholder="请输入您的账号"></el-input>
@@ -83,7 +85,7 @@
     border-radius: 5px;
     -moz-border-radius: 5px;
     background-clip: padding-box;
-    margin: 180px auto;
+    margin: 180px 80px 180px auto;
     width: 350px;
     padding: 35px 35px 15px 35px;
     background: #fff;
