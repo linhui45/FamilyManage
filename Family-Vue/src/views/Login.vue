@@ -8,9 +8,9 @@
       <el-form-item>
         <!--tab标签-->
         <el-tabs v-model="activeName" @tab-click="handleClick" class="users">
-          <el-tab-pane label="学生" name="students"></el-tab-pane>
-          <el-tab-pane label="教师" name="teacher"></el-tab-pane>
-          <el-tab-pane label="教务老师" name="eduTeacher"></el-tab-pane>
+          <el-tab-pane label="家庭成员" name="homeOther"></el-tab-pane>
+          <el-tab-pane label="家主" name="homeEast"></el-tab-pane>
+          <el-tab-pane label="管理员" name="admin"></el-tab-pane>
         </el-tabs>
       </el-form-item>
 
@@ -74,9 +74,7 @@
 
 <style>
   body {
-    background-image: url("../../dist/static/img/loginBg.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
+    background: #dfe4ed url("../../dist/static/img/loginBg.jpg") no-repeat fixed top;
   }
 
   .login-container {

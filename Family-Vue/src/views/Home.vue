@@ -21,7 +21,7 @@
       </el-col>
     </el-col>
     <el-col :span="24" class="main">
-      感觉是不是得输出点什么
+
     </el-col>
   </el-row>
 </template>
